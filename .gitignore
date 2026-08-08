@@ -1,0 +1,14 @@
+# Archivos compilados (Java)
+bin/
+*.class
+
+# Archivos de configuración de Eclipse
+.classpath
+.project
+.settings/
+
+# Archivos ocultos de sistema (macOS / Windows)
+__MACOSX/
+.DS_Store
+Thumbs.db
+
