@@ -165,10 +165,24 @@ public class Videoclub {
 	 *   excepción.
 	 */
 	public Pelicula peliculaMasAntiguaDeGenero(String genero) {
-		// TODO: reemplazar esta línea por la lógica descrita arriba.
-		throw new UnsupportedOperationException("TODO: completar peliculaMasAntiguaDeGenero() en Videoclub");
-	}
+	    if (genero == null || this.peliculas == null) {
+	        return null;
+	    }
 
+	    Pelicula masAntigua = null;
+
+	    for (Pelicula p : this.peliculas) {
+	        if (p != null && p.getGenero() != null && p.getGenero().equals(genero)) {
+	            
+	            if (masAntigua == null || p.getAnioEstreno() < masAntigua.getAnioEstreno()) {
+	                masAntigua = p;
+	            }
+	        }
+	    }
+
+	    return masAntigua;
+	}
+	
 	/**
 	 * RETO OPCIONAL (10 pts extra): completar alquilarPrimeraDisponibleDeGenero().
 	 * <p>
@@ -189,8 +203,20 @@ public class Videoclub {
 	 *   retorna null).
 	 */
 	public Pelicula alquilarPrimeraDisponibleDeGenero(String genero) throws PeliculaNoDisponibleException {
-		// TODO (opcional): reemplazar esta línea por la lógica descrita arriba.
-		throw new UnsupportedOperationException(
-				"TODO opcional: completar alquilarPrimeraDisponibleDeGenero() en Videoclub");
+
+
+	    
+	    for (Pelicula pelicula : this.peliculas) {
+	        if (genero != null && genero.equals(pelicula.getGenero())) {
+	            if (pelicula.estaDisponible()) {
+	                pelicula.alquilar();
+	                return pelicula; 
+	            }
+	        }
+	    }
+
+	 
+	    throw new PeliculaNoDisponibleException("No hay ninguna película disponible para el género: " + genero);
+	
 	}
 }
